@@ -615,7 +615,7 @@ static bool appendType(SmallStringEnc &Enc, QualType QType,
   if (const PointerType *PT = QT->getAs<PointerType>())
     return appendPointerType(Enc, PT, CGM, TSC);
 
-  if (const EnumType *ET = QT->getAs<EnumType>())
+  if (const EnumType *ET = QT->getAsCanonical<EnumType>())
     return appendEnumType(Enc, ET, TSC, QT.getBaseTypeIdentifier());
 
   if (const RecordType *RT = QT->getAsStructureType())
