@@ -1,0 +1,33 @@
+fastapi
+uvicorn
+from fastapi import FastAPI
+from fastapi.responses import HTMLResponse
+
+app = FastAPI()
+
+# صفحة التحكم
+@app.get("/", response_class=HTMLResponse)
+async def home():
+    return """
+    <html>
+    <head><title>Silver Bot</title></head>
+    <body>
+        <h1>🤖 روبوت سيلفر</h1>
+        <p>لوحة تحكم للتسويق والجوائز</p>
+        <button onclick="alert('إضافة عميل جديد')">➕ إضافة عميل</button>
+        <button onclick="alert('إضافة منتج جديد')">📦 إضافة منتج</button>
+        <button onclick="alert('إضافة جائزة')">🎁 إضافة جائزة</button>
+        <button onclick="alert('إدارة المبيعات')">💰 إدارة المبيعات</button>
+    </body>
+    </html>
+    """
+
+# API بسيطة للتجربة
+@app.get("/api/ping")
+async def ping():
+    return {"status": "ok", "bot": "Silver Bot يعمل ✅"}
+uvicorn main:app --reload
+http://127.0.0.1:8000
+main.py
+
+requirements.txthttps://your-bot-name.deta.app
